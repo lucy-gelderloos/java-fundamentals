@@ -1,6 +1,5 @@
 import java.util.Random;
 import java.time.LocalDateTime;  
-import java.time.format.DateTimeFormatter;  
 
 public class Main {
     public static void main (String[] args){
@@ -70,11 +69,11 @@ public class Main {
         return currentTime;
     }
     
-        private static String pad(String time) {
-            if(time.length() == 1){
-                return "0" + time;
-            }
-            else return time;
+    private static String pad(String time) {
+        if(time.length() == 1){
+            return "0" + time;
         }
+        else return time;
+    }
 
 }
