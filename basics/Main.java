@@ -54,18 +54,13 @@ public class Main {
         
         while(startTime.equals(currentTime)) {
             currentTime = getTime();
+            while(!startTime.equals(currentTime)){
+                startTime = currentTime;
+                System.out.println(startTime);
+            }
         }
-        startTime = currentTime;
-        System.out.println(startTime);
     }
-
-    private static String pad(String time) {
-        if(time.length() == 1){
-            return "0" + time;
-        }
-        else return time;
-    }
-
+    
     private static String getTime() {
         LocalDateTime now = LocalDateTime.now();
         String hour = pad(Integer.toString(now.getHour()));
@@ -74,5 +69,12 @@ public class Main {
         String currentTime = hour + ":" + minute + ":" + second;
         return currentTime;
     }
+    
+        private static String pad(String time) {
+            if(time.length() == 1){
+                return "0" + time;
+            }
+            else return time;
+        }
 
 }
