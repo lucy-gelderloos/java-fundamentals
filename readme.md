@@ -16,4 +16,19 @@
 
 ## basicLibrary
 
-- 
+- roll
+  - Parameters: int `n`
+  - Return type: int[]
+  - Simulates rolling a six-sided die `n` times and returns the results of each roll in an array
+- containsDuplicates
+  - Parameters: int[]
+  - Return type: boolean
+  - Takes in an array of integers and returns "true" if any of the values are duplicates
+- findAverage
+  - Parameters: int[]
+  - Return type: float
+  - Takes in an array of integers and returns the average of all values as a float
+- findLowestAverage
+  - Parameters: int[][]
+  - Return type: int[]
+  - Takes in a matrix of arrays of integers, finds the average of each array, and returns the array with the lowest average
