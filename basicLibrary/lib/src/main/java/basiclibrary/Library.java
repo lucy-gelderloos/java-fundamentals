@@ -4,7 +4,7 @@ import java.util.Random;
 public class Library {
     public boolean someLibraryMethod() {return true;}
 
-`    public static int[] roll(int n) {
+    public static int[] roll(int n) {
         int[] rolls = new int[n];
         for(int i = 0; i < n; i++){
             Random random = new Random();
@@ -12,7 +12,7 @@ public class Library {
             rolls[i] = thisRoll;
         }
         return rolls;
-    }`
+    }
 
     public static boolean containsDuplicates(int[] array) {
         for(int i = 0; i < array.length; i++) {
