@@ -1,5 +1,5 @@
 import java.util.Random;
-import java.time.LocalDateTime;  
+import java.time.LocalDateTime;
 
 public class Main {
     public static void main (String[] args){
@@ -26,7 +26,6 @@ public class Main {
         }
         else return word;
     }
-
     public static void flipNHeads(int n) {
         int heads = 0;
         int flipCount = 0;
