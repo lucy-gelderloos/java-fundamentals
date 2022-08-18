@@ -80,7 +80,7 @@ public class Library {
             allTemps[i] = j;
         }
 
-        String[] missingTempsArr = new String[tempRange - uniqueTemps.size()];
+        String[] missingTempsArr = new String[tempRange - uniqueTemps.size() + 1];
 
         int j = 0;
         for(int i = 0; i < allTemps.length; i++) {
@@ -100,6 +100,7 @@ public class Library {
         }
 
         return highTempString + "\n" + lowTempString + "\n" + missingTempsString;
+        // https://www.baeldung.com/java-string-newline
     }
 }
 

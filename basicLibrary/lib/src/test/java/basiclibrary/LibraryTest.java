@@ -42,7 +42,7 @@ class LibraryTest {
         int[] testArraySevenFive = new int[]{6,7,8,9};
 
         assertEquals(10,Library.findAverage(testArrayTen),"findAverage should return 10 as the average of testArrayTen");
-        assertEquals(7.5, Library.findAverage(testArraySevenFive),"findAverage shouls return 7.5 as the average of testArraySevenFive");
+        assertEquals(7.5, Library.findAverage(testArraySevenFive),"findAverage should return 7.5 as the average of testArraySevenFive");
     }
 
     @Test void testFindLowestAverage() {
@@ -54,4 +54,24 @@ class LibraryTest {
         };
         assertEquals(testMatrix[2],Library.findLowestAverage(testMatrix),"findLowestAverage should return the array at index 2 of the test matrix");
     }
+
+    @Test void testAnalyzeTemps() {
+        int[][] weeklyMonthTemperatures = {
+                {66, 64, 58, 65, 71, 57, 60},
+                {57, 65, 65, 70, 72, 65, 51},
+                {55, 54, 60, 53, 59, 57, 61},
+                {65, 56, 55, 52, 55, 62, 57}
+        };
+
+        String expectedString = "High: 72\n" +
+                "Low: 51\n" +
+                "Never saw temperature: 63\n" +
+                "Never saw temperature: 67\n" +
+                "Never saw temperature: 68\n" +
+                "Never saw temperature: 69";
+
+        assertEquals(expectedString,Library.analyzeTemps(weeklyMonthTemperatures));
+    }
+
+
 }
