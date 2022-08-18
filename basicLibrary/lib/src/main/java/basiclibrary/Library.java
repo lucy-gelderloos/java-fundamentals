@@ -1,8 +1,8 @@
 package basiclibrary;
 
 import java.util.Random;
-import java.util.ArrayList;
-import java.util.HashMap;
+//import java.util.ArrayList;
+//import java.util.HashMap;
 import java.util.HashSet;
 public class Library {
     public boolean someLibraryMethod() {return true;}
@@ -69,8 +69,8 @@ public class Library {
             }
         }
 
-        String highTemp = "High: " + maxTemp;
-        String lowTemp = "Low: " + minTemp;
+        String highTempString = "High: " + maxTemp;
+        String lowTempString = "Low: " + minTemp;
 
         int tempRange = maxTemp - minTemp;
         int[] allTemps = new int[tempRange];
@@ -80,7 +80,26 @@ public class Library {
             allTemps[i] = j;
         }
 
+        String[] missingTempsArr = new String[tempRange - uniqueTemps.size()];
 
+        int j = 0;
+        for(int i = 0; i < allTemps.length; i++) {
+            if(!uniqueTemps.contains(allTemps[i])) {
+                missingTempsArr[j] = "Never saw temperature: " + allTemps[i];
+                j = j + 1;
+            }
+        }
+
+        String missingTempsString = "";
+
+        for(int i = 0; i < missingTempsArr.length; i++) {
+            if(i > 0){
+                missingTempsString = missingTempsString + "\n";
+            }
+            missingTempsString = missingTempsString + missingTempsArr[i];
+        }
+
+        return highTempString + "\n" + lowTempString + "\n" + missingTempsString;
     }
 }
 
