@@ -31,4 +31,4 @@
 - findLowestAverage
   - Parameters: int[][]
   - Return type: int[]
-  - Takes in a matrix of arrays of integers, finds the average of each array, and returns the array with the lowest average
+  - Takes in an array of arrays of integers, finds the average of each array, and returns the array with the lowest average

@@ -1,6 +1,9 @@
 package basiclibrary;
 
 import java.util.Random;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 public class Library {
     public boolean someLibraryMethod() {return true;}
 
@@ -44,6 +47,40 @@ public class Library {
             }
         }
         return matrix[lowestAverageIndex];
+    }
+
+    public static String analyzeTemps(int[][] monthTemps){
+        HashSet<Integer> uniqueTemps = new HashSet<>();
+
+        for(int i = 0; i < monthTemps.length; i++){
+            for(int j = 0; j < monthTemps[i].length; j++){
+                uniqueTemps.add(monthTemps[i][j]);
+            }
+        }
+
+        int minTemp = monthTemps[0][0];
+        int maxTemp = monthTemps[0][0];
+
+        for (int temp : uniqueTemps) {
+            if(temp < minTemp) {
+                minTemp = temp;
+            } else if (temp > maxTemp) {
+                maxTemp = temp;
+            }
+        }
+
+        String highTemp = "High: " + maxTemp;
+        String lowTemp = "Low: " + minTemp;
+
+        int tempRange = maxTemp - minTemp;
+        int[] allTemps = new int[tempRange];
+
+        for(int i = 0; i < tempRange; i++) {
+            int j = minTemp + i;
+            allTemps[i] = j;
+        }
+
+
     }
 }
 
