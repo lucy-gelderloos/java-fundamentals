@@ -3,6 +3,9 @@
  */
 package basiclibrary;
 
+import java.util.List;
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -73,5 +76,32 @@ class LibraryTest {
         assertEquals(expectedString,Library.analyzeTemps(weeklyMonthTemperatures));
     }
 
+    @Test void testTally() {
+        ArrayList<String> votesTest1 = new ArrayList<>();
+        votesTest1.add("Bush");
+        votesTest1.add("Bush");
+        votesTest1.add("Bush");
+        votesTest1.add("Shrub");
+        votesTest1.add("Hedge");
+        votesTest1.add("Shrub");
+        votesTest1.add("Bush");
+        votesTest1.add("Hedge");
+        votesTest1.add("Bush");
+
+        ArrayList<String> votesTest2 = new ArrayList<>();
+        votesTest2.add("oatmeal raisin");
+        votesTest2.add("chocolate chip");
+        votesTest2.add("snickerdoodle");
+        votesTest2.add("chocolate chip");
+        votesTest2.add("chocolate chip");
+        votesTest2.add("snickerdoodle");
+        votesTest2.add("chocolate chip");
+        votesTest2.add("oatmeal raisin");
+        votesTest2.add("chocolate chip");
+        votesTest2.add("snickerdoodle");
+
+        assertEquals("Bush received the most votes!",Library.tally(votesTest1));
+        assertEquals("chocolate chip received the most votes!",Library.tally(votesTest2));
+    }
 
 }

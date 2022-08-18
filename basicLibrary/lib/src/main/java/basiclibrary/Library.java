@@ -1,8 +1,9 @@
 package basiclibrary;
 
+import java.util.List;
 import java.util.Random;
-//import java.util.ArrayList;
-//import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 public class Library {
     public boolean someLibraryMethod() {return true;}
@@ -101,6 +102,38 @@ public class Library {
 
         return highTempString + "\n" + lowTempString + "\n" + missingTempsString;
         // https://www.baeldung.com/java-string-newline
+    }
+
+    public static String tally(ArrayList<String> votes){
+
+        HashSet<String> categories = new HashSet<>();
+
+        for(String vote : votes) {
+            categories.add(vote);
+        }
+
+        HashMap<String, Integer> voteTally = new HashMap<>();
+
+        for(String category : categories) {
+            voteTally.put(category,0);
+        }
+
+        for(String vote : votes) {
+            int voteCount = voteTally.get(vote);
+            voteTally.put(vote,voteCount + 1);
+        }
+
+        int mostVotes = 0;
+        String winner = "";
+
+        for(String category : categories) {
+            if(voteTally.get(category) > mostVotes) {
+                mostVotes = voteTally.get(category);
+                winner = category;
+            }
+        }
+
+        return winner + " received the most votes!";
     }
 }
 
