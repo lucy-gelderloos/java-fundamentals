@@ -51,8 +51,9 @@ public class Library {
     }
 
     public static String analyzeTemps(int[][] monthTemps){
-        HashSet<Integer> uniqueTemps = new HashSet<>();
 
+        HashSet<Integer> uniqueTemps = new HashSet<>();
+        // put all unique temps into a HashSet
         for(int i = 0; i < monthTemps.length; i++){
             for(int j = 0; j < monthTemps[i].length; j++){
                 uniqueTemps.add(monthTemps[i][j]);
@@ -61,7 +62,7 @@ public class Library {
 
         int minTemp = monthTemps[0][0];
         int maxTemp = monthTemps[0][0];
-
+        // find the minimum and maximum temperature out of all values
         for (int temp : uniqueTemps) {
             if(temp < minTemp) {
                 minTemp = temp;
@@ -75,14 +76,14 @@ public class Library {
 
         int tempRange = maxTemp - minTemp;
         int[] allTemps = new int[tempRange];
-
+        // create an array containing each degree in the temperature range between the monthly high and low temps
         for(int i = 0; i < tempRange; i++) {
             int j = minTemp + i;
             allTemps[i] = j;
         }
 
         String[] missingTempsArr = new String[tempRange - uniqueTemps.size() + 1];
-
+        // iterate through the array of all temps and return a string containing each temperature that does not appear in the list of unique temps
         int j = 0;
         for(int i = 0; i < allTemps.length; i++) {
             if(!uniqueTemps.contains(allTemps[i])) {
@@ -92,14 +93,14 @@ public class Library {
         }
 
         String missingTempsString = "";
-
+        // concatenate each missing temp string to the return string, with line breaks preceding every line after the first
         for(int i = 0; i < missingTempsArr.length; i++) {
             if(i > 0){
                 missingTempsString = missingTempsString + "\n";
             }
             missingTempsString = missingTempsString + missingTempsArr[i];
         }
-
+        // concatenate everything together, with line breaks between each section
         return highTempString + "\n" + lowTempString + "\n" + missingTempsString;
         // https://www.baeldung.com/java-string-newline
     }
@@ -107,17 +108,17 @@ public class Library {
     public static String tally(ArrayList<String> votes){
 
         HashSet<String> categories = new HashSet<>();
-
+        // create a list containing each category voted for
         for(String vote : votes) {
             categories.add(vote);
         }
 
         HashMap<String, Integer> voteTally = new HashMap<>();
-
+        // create a hashmap with each category as a key corresponding to a number of votes. Vote count starts at 0.
         for(String category : categories) {
             voteTally.put(category,0);
         }
-
+        // iterate through the votes. For each vote, get that key from the hashmap and add 1 to the vote count.
         for(String vote : votes) {
             int voteCount = voteTally.get(vote);
             voteTally.put(vote,voteCount + 1);
@@ -125,7 +126,7 @@ public class Library {
 
         int mostVotes = 0;
         String winner = "";
-
+        // find which key has the most votes
         for(String category : categories) {
             if(voteTally.get(category) > mostVotes) {
                 mostVotes = voteTally.get(category);
