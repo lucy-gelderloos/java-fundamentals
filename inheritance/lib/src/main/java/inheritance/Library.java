@@ -7,4 +7,10 @@ public class Library {
     public boolean someLibraryMethod() {
         return true;
     }
+
+    public static void main(String[] args) {
+        Restaurant deliZone = new Restaurant("Deli Zone",5.0f,"$");
+        String deliZoneString = deliZone.toRestString(deliZone);
+        System.out.println(deliZoneString);
+    }
 }
