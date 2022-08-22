@@ -11,4 +11,16 @@ class LibraryTest {
         Library classUnderTest = new Library();
         assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
     }
+
+    @Test void testRestaurantConstructor() {
+        Restaurant testRest = new Restaurant("El Camion",5.0f,"$");
+        assertEquals(testRest.name,"El Camion");
+        assertEquals(testRest.averageRating,5.0);
+        assertEquals(testRest.priceCategory,"$");
+    }
+
+    @Test void testToRestString() {
+        Restaurant testRest = new Restaurant("El Camion",5.0f,"$");
+        assertEquals(testRest.toRestString(testRest),"El Camion: 5.0 stars, $");
+    }
 }
