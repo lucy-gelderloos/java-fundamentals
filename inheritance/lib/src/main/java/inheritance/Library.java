@@ -9,7 +9,7 @@ public class Library {
     }
 
     public static void main(String[] args) {
-        Restaurant deliZone = new Restaurant("Deli Zone",5.0f,"$");
+        Restaurant deliZone = new Restaurant("Deli Zone",5,"$",null);
         String deliZoneString = deliZone.toRestString(deliZone);
         System.out.println(deliZoneString);
     }

@@ -13,14 +13,29 @@ class LibraryTest {
     }
 
     @Test void testRestaurantConstructor() {
-        Restaurant testRest = new Restaurant("El Camion",5.0f,"$");
+        Restaurant testRest = new Restaurant("El Camion",5,"$",null);
         assertEquals(testRest.name,"El Camion");
         assertEquals(testRest.averageRating,5.0);
         assertEquals(testRest.priceCategory,"$");
     }
 
     @Test void testToRestString() {
-        Restaurant testRest = new Restaurant("El Camion",5.0f,"$");
+        Restaurant testRest = new Restaurant("El Camion",5,"$",null);
         assertEquals(testRest.toRestString(testRest),"El Camion: 5.0 stars, $");
+    }
+
+    @Test void testReviewConstructor() {
+        Restaurant testRest = new Restaurant("El Camion",5,"$",null);
+        Review testReview = new Review("Best burritos in Seattle!","Restaurant Patron",5,testRest);
+        assertEquals(testReview.body,"Best burritos in Seattle!");
+        assertEquals(testReview.author,"Restaurant Patron");
+        assertEquals(testReview.rating,5);
+        assertEquals(testReview.restaurant.name,"El Camion");
+    }
+
+    @Test void testReviewString() {
+        Restaurant testRest = new Restaurant("El Camion",5,"$",null);
+        Review testReview = new Review("Best burritos in Seattle!","Restaurant Patron",5,testRest);
+        assertEquals(testReview.toReviewString(testReview),"El Camion: Best burritos in Seattle! | 5 stars. -Restaurant Patron");
     }
 }
