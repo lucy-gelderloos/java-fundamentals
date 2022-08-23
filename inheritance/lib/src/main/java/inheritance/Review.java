@@ -6,16 +6,26 @@ public class Review {
     private int rating;
     private Restaurant restaurant;
 
-    public Review(String body, String author, int rating) {
+    public Review(String body, String author, int rating, Restaurant restaurant) {
         this.restaurant = restaurant;
         this.body = body;
         this.author = author;
         this.rating = rating;
     }
 
+//    public Review(String body, String author, int rating, Theater theater, String movie) {
+//        this.theater = theater;
+//        this.body = body;
+//        this.author = author;
+//        this.rating = rating;
+//        this.movie = movie;
+//    }
+
+    // TODO: find a way to associate the restaurant with the review without including the whole restaurant object - hashCode? add ID? If add ID, how to track what's next ID? Just randomize & hope it's fine?
     // TODO: limit rating to between 0 and 5
     // TODO: add User property
     // TODO: limit user to one review per restaurant
+    // TODO: add updateStars method
 
     public static String toReviewString(Review review) {
         String fullReview = review.body + " | " + review.rating + " stars. -" + review.author;

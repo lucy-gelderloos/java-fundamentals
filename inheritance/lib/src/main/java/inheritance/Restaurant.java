@@ -1,11 +1,13 @@
 package inheritance;
 
+import java.util.ArrayList;
+
 public class Restaurant {
     private String name;
     private int averageRating;
     private String priceCategory;
     // TODO: limit priceCategory to "$", "$$", "$$$", or "$$$$"
-    private LinkedList reviewsList = new LinkedList();
+    private ArrayList<Review> reviewsList = new ArrayList();
 
     public Restaurant(String name, String priceCategory) {
         this.name = name;
@@ -13,32 +15,28 @@ public class Restaurant {
     }
 
     public static void addReview(String body, String author, int rating, Restaurant restaurant) {
-        Review review = new Review(body, author, rating);
-        restaurant.reviewsList.insert(review);
+        Review review = new Review(body, author, rating, restaurant);
+        restaurant.reviewsList.add(review);
         updateAverageRating(restaurant);
     }
 
     public static void updateAverageRating(Restaurant restaurant) {
-        LinkedList reviewsList = restaurant.reviewsList;
-        int numReviews = reviewsList.countNodes();
         int totalStars = 0;
-        Node thisReview = reviewsList.getHead();
-        while(thisReview != null){
-            totalStars += thisReview.getValue().getRating();
-            thisReview = thisReview.getNext();
+        for (Review review : restaurant.reviewsList) {
+            totalStars += review.getRating();
         }
-        restaurant.averageRating = Math.round(totalStars / numReviews);
+        restaurant.averageRating = Math.round(totalStars / restaurant.reviewsList.size());
     }
 
     public static String getAllReviews(Restaurant restaurant) {
         String allReviews = "";
-        if(restaurant.reviewsList.getHead() != null) {
+        if(restaurant.reviewsList.size() > 0) {
             allReviews = "\n";
-            Node thisReview = restaurant.reviewsList.getHead();
-            while (thisReview != null) {
-                allReviews += Review.toReviewString(thisReview.getValue()) + "\n";
-                // TODO: no newline in last iteration
-                thisReview = thisReview.getNext();
+            for (int i = 0; i < restaurant.reviewsList.size(); i++ ) {
+                allReviews += Review.toReviewString(restaurant.reviewsList.get(i));
+                while(i < (restaurant.reviewsList.size() - 1)) {
+                    allReviews += "\n";
+                }
             }
         }
         return allReviews;
@@ -74,11 +72,11 @@ public class Restaurant {
         this.priceCategory = priceCategory;
     }
 
-    public LinkedList getReviewsList() {
+    public ArrayList getReviewsList() {
         return reviewsList;
     }
 
-    public void setReviewsList(LinkedList reviewsList) {
+    public void ArrayList(ArrayList reviewsList) {
         this.reviewsList = reviewsList;
     }
 

@@ -27,9 +27,9 @@ class LibraryTest {
     }
 
     @Test void testReviewConstructor() {
-        Review testReview1 = new Review("Java is great!","A. Developer",5);
-        Review testReview2 = new Review("Try the linked lists!","NoMoreArrays",4);
-        Review testReview3 = new Review("I hated this diner","PythonFan123",0);
+        Review testReview1 = new Review("Java is great!","A. Developer",5,testaurant);
+        Review testReview2 = new Review("Try the linked lists!","NoMoreArrays",4,testaurant);
+        Review testReview3 = new Review("I hated this diner","PythonFan123",0,testaurant);
 
         assertEquals("Java is great!", testReview1.getBody());
         assertEquals("NoMoreArrays", testReview2.getAuthor());
@@ -37,7 +37,7 @@ class LibraryTest {
     }
 
     @Test void testReviewString() {
-        Review testReview1 = new Review("Java is great!","A. Developer",5);
+        Review testReview1 = new Review("Java is great!","A. Developer",5,testaurant);
 
         assertEquals(Review.toReviewString(testReview1),"Java is great! | 5 stars. -A. Developer");
     }
@@ -46,7 +46,6 @@ class LibraryTest {
         Restaurant.addReview("Java is great!","A. Developer",5,testaurant);
 
         assertNotNull(testaurant.getReviewsList());
-        assertNull(testaurant.getReviewsList().getHead().next);
     }
 
 }
