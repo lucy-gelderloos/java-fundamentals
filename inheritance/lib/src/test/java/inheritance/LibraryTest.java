@@ -15,7 +15,7 @@ class LibraryTest {
     Restaurant testaurant = new Restaurant("The Java Diner",0,"$");
 
     @Test void testRestaurantConstructor() {
-        assertEquals("The Java Diner",testaurant.name);
+        assertEquals("The Java Diner",testaurant.getName());
     }
 
     @Test void testToRestStringNoReviews() {
@@ -27,8 +27,8 @@ class LibraryTest {
         Restaurant.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
         Restaurant.addReview("I hated this diner","PythonFan123",0,testaurant);
 
-        assertEquals("The Java Diner: 3 stars, $/nI hated this diner | 0 stars. -PythonFan123/nTry the linked lists! | 4 stars. -NoMoreArrays/nJava is great! | 5 stars. -A. Developer/n",Restaurant.toRestString(testaurant));
-        assertEquals(3,testaurant.averageRating);
+        assertEquals("The Java Diner: 3 stars, $\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer\n",Restaurant.toRestString(testaurant));
+        assertEquals(3,testaurant.getAverageRating());
     }
 
     @Test void testReviewConstructor() {
@@ -36,9 +36,9 @@ class LibraryTest {
         Review testReview2 = new Review("Try the linked lists!","NoMoreArrays",4);
         Review testReview3 = new Review("I hated this diner","PythonFan123",0);
 
-        assertEquals("Java is great!", testReview1.body);
-        assertEquals("NoMoreArrays", testReview2.author);
-        assertEquals(0, testReview3.rating);
+        assertEquals("Java is great!", testReview1.getBody());
+        assertEquals("NoMoreArrays", testReview2.getAuthor());
+        assertEquals(0, testReview3.getRating());
     }
 
     @Test void testReviewString() {
@@ -50,8 +50,8 @@ class LibraryTest {
     @Test void testAddReview() {
         Restaurant.addReview("Java is great!","A. Developer",5,testaurant);
 
-        assertNotNull(testaurant.reviewsList);
-        assertNull(testaurant.reviewsList.head.next);
+        assertNotNull(testaurant.getReviewsList());
+        assertNull(testaurant.getReviewsList().getHead().next);
     }
 
 }

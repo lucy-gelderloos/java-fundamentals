@@ -2,10 +2,18 @@ package inheritance;
 
 public class LinkedList
 {
-  public Node head;
+  private Node head;
 
-  public LinkedList() {
+  LinkedList() {
     this.head = null;
+  }
+
+  public Node getHead() {
+    return head;
+  }
+
+  public void setHead(Node head) {
+    this.head = head;
   }
 
   public void insert(Review review) {
@@ -24,15 +32,4 @@ public class LinkedList
     return nodeCount;
   }
 
-//  @Override
-//  public String toString() {
-//    String contents = "Reviews/n";
-//    // same loop as above, except add the value to the string instead of checking against an argument
-//    Node thisNode = this.head;
-//    while (thisNode != null) {
-//      contents += thisNode.getValue() + "/n";
-//      thisNode = thisNode.getNext();
-//    }
-//      return contents + "***";
-//    }
 }

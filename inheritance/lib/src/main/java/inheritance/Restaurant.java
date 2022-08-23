@@ -1,10 +1,42 @@
 package inheritance;
 
 public class Restaurant {
-    String name = "";
-    int averageRating = 0;
-    String priceCategory = "";
-    LinkedList reviewsList = new LinkedList();
+    private String name = "";
+    private int averageRating = 0;
+    private String priceCategory = "";
+    private LinkedList reviewsList = new LinkedList();
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAverageRating() {
+        return averageRating;
+    }
+
+    public void setAverageRating(int averageRating) {
+        this.averageRating = averageRating;
+    }
+
+    public String getPriceCategory() {
+        return priceCategory;
+    }
+
+    public void setPriceCategory(String priceCategory) {
+        this.priceCategory = priceCategory;
+    }
+
+    public LinkedList getReviewsList() {
+        return reviewsList;
+    }
+
+    public void setReviewsList(LinkedList reviewsList) {
+        this.reviewsList = reviewsList;
+    }
 
     public Restaurant(String name, int averageRating, String priceCategory) {
         this.name = name;
@@ -22,9 +54,9 @@ public class Restaurant {
         LinkedList reviewsList = restaurant.reviewsList;
         int numReviews = reviewsList.countNodes();
         int totalStars = 0;
-        Node thisReview = reviewsList.head;
+        Node thisReview = reviewsList.getHead();
         while(thisReview != null){
-            totalStars += thisReview.getValue().rating;
+            totalStars += thisReview.getValue().getRating();
             thisReview = thisReview.getNext();
         }
         restaurant.averageRating = Math.round(totalStars / numReviews);
@@ -32,11 +64,11 @@ public class Restaurant {
 
     public static String getAllReviews(Restaurant restaurant) {
         String allReviews = "";
-        if(restaurant.reviewsList.head != null) {
-            allReviews = "/n";
-            Node thisReview = restaurant.reviewsList.head;
+        if(restaurant.reviewsList.getHead() != null) {
+            allReviews = "\n";
+            Node thisReview = restaurant.reviewsList.getHead();
             while (thisReview != null) {
-                allReviews += Review.toReviewString(thisReview.getValue()) + "/n";
+                allReviews += Review.toReviewString(thisReview.getValue()) + "\n";
                 thisReview = thisReview.getNext();
             }
         }

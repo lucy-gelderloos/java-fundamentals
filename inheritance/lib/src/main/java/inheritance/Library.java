@@ -9,8 +9,11 @@ public class Library {
     }
 
     public static void main(String[] args) {
-        Restaurant deliZone = new Restaurant("Deli Zone",5,"$");
-        String deliZoneString = Restaurant.toRestString(deliZone);
-        System.out.println(deliZoneString);
+        Restaurant testaurant = new Restaurant("The Java Diner",0,"$");
+        Restaurant.addReview("I hated this diner","PythonFan123",0,testaurant);
+        Restaurant.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
+        Restaurant.addReview("Java is great!","A. Developer",5,testaurant);
+
+        System.out.println(Restaurant.toRestString(testaurant));
     }
 }
