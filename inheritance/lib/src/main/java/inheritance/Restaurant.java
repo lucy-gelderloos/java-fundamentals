@@ -22,6 +22,11 @@ public class Restaurant {
         return restaurantDescription;
     }
 
+    public void addReview(String body, String author, int rating, Restaurant restaurant) {
+        Review review = new Review(body, author, rating, restaurant);
+        restaurant.reviewsList.insert(review);
+    }
+
     public void updateAverageRating(Restaurant restaurant) {
         LinkedList reviewsList = restaurant.reviewsList;
         int numReviews = reviewsList.countNodes();
@@ -34,8 +39,4 @@ public class Restaurant {
         restaurant.averageRating = Math.round(totalStars / numReviews);
     }
 
-    public void addReview(Review review, Restaurant restaurant) {
-        restaurant.numReviews++;
-        restaurant.reviewsList.insert(review);
-    }
 }

@@ -13,7 +13,7 @@ public class Review {
     }
 
     public String toReviewString(Review review) {
-        String restaurantDescription = restaurant.name + ": " + review.body + " | " + review.rating + " stars. -" + review.author;
-        return restaurantDescription;
+        String fullReview = restaurant.name + ": " + review.body + " | " + review.rating + " stars. -" + review.author;
+        return fullReview;
     }
 }
