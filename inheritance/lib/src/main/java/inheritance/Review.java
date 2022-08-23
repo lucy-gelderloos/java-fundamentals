@@ -1,9 +1,9 @@
 package inheritance;
 
 public class Review {
-    String body = "";
-    String author = "";
-    int rating = 0;
+    String body;
+    String author;
+    int rating;
     Restaurant restaurant;
     public Review(String body, String author, int rating, Restaurant restaurant) {
         this.restaurant = restaurant;
@@ -12,8 +12,8 @@ public class Review {
         this.rating = rating;
     }
 
-    public String toReviewString(Review review) {
-        String fullReview = restaurant.name + ": " + review.body + " | " + review.rating + " stars. -" + review.author;
+    public static String toReviewString(Review review) {
+        String fullReview = review.body + " | " + review.rating + " stars. -" + review.author;
         return fullReview;
     }
 }

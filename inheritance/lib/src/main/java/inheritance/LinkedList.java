@@ -5,17 +5,12 @@ public class LinkedList
   public Node head;
 
   public LinkedList() {
-    // creates new list with head null
     this.head = null;
   }
 
-  //https://www.geeksforgeeks.org/linked-list-set-2-inserting-a-node/
-  public void insert(Review value) {
-    // creates new node using Node class
-    Node newNode = new Node(value);
-    // sets pointer of new node to point at current head
+  public void insert(Review review) {
+    Node newNode = new Node(review);
     newNode.setNext(this.head);
-    // makes new node new head
     this.head = newNode;
   }
 
@@ -24,7 +19,6 @@ public class LinkedList
     int nodeCount = 0;
     while (thisNode != null) {
       nodeCount++;
-      // move to the next node
       thisNode = thisNode.getNext();
     }
     return nodeCount;

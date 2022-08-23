@@ -12,30 +12,35 @@ class LibraryTest {
         assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
     }
 
+    Restaurant testaurant = new Restaurant("The Java Diner",0,"$",null);
+
     @Test void testRestaurantConstructor() {
-        Restaurant testRest = new Restaurant("El Camion",5,"$",null);
-        assertEquals(testRest.name,"El Camion");
-        assertEquals(testRest.averageRating,5.0);
-        assertEquals(testRest.priceCategory,"$");
+        assertEquals(testaurant.name,"The Java Diner");
+        assertNull(testaurant.reviewsList);
     }
 
     @Test void testToRestString() {
-        Restaurant testRest = new Restaurant("El Camion",5,"$",null);
-        assertEquals(testRest.toRestString(testRest),"El Camion: 5.0 stars, $");
+        assertEquals(Restaurant.toRestString(testaurant),"");
     }
 
     @Test void testReviewConstructor() {
-        Restaurant testRest = new Restaurant("El Camion",5,"$",null);
-        Review testReview = new Review("Best burritos in Seattle!","Restaurant Patron",5,testRest);
-        assertEquals(testReview.body,"Best burritos in Seattle!");
-        assertEquals(testReview.author,"Restaurant Patron");
-        assertEquals(testReview.rating,5);
-        assertEquals(testReview.restaurant.name,"El Camion");
+        Review testReview1 = new Review("Java is great!","A. Developer",5,testaurant);
+        Review testReview2 = new Review("Try the linked lists!","NoMoreArrays",4,testaurant);
+        Review testReview3 = new Review("I hated this diner","PythonFan123",0,testaurant);
+
+        assertEquals(testReview1.body,"Java is great!");
+        assertEquals(testReview2.author,"NoMoreArrays");
+        assertEquals(testReview3.rating,0);
+        assertEquals(testReview1.restaurant.name,"The Java Cafe");
     }
 
     @Test void testReviewString() {
-        Restaurant testRest = new Restaurant("El Camion",5,"$",null);
-        Review testReview = new Review("Best burritos in Seattle!","Restaurant Patron",5,testRest);
-        assertEquals(testReview.toReviewString(testReview),"El Camion: Best burritos in Seattle! | 5 stars. -Restaurant Patron");
+        Review testReview1 = new Review("Java is great!","A. Developer",5,testaurant);
+        assertEquals(Review.toReviewString(testReview1),"Java is great! | 5 stars. -A. Developer");
+    }
+
+    @Test void testAddReview() {
+        Restaurant.addReview("Java is great!","A. Developer",5,testaurant);
+        assertNotNull(testaurant.reviewsList);
     }
 }

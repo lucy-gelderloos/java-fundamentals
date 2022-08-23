@@ -8,8 +8,6 @@ public class Restaurant {
     LinkedList reviewsList;
 //    LinkedList reviewsList = new LinkedList();
 
-    int numReviews = 0;
-
     public Restaurant(String name, int averageRating, String priceCategory, LinkedList reviewsList) {
         this.name = name;
         this.averageRating = averageRating;
@@ -17,17 +15,13 @@ public class Restaurant {
         this.reviewsList = reviewsList;
     }
 
-    public String toRestString(Restaurant restaurant) {
-        String restaurantDescription = restaurant.name + ": " + restaurant.averageRating + " stars, " + restaurant.priceCategory;
-        return restaurantDescription;
-    }
-
-    public void addReview(String body, String author, int rating, Restaurant restaurant) {
+    public static void addReview(String body, String author, int rating, Restaurant restaurant) {
         Review review = new Review(body, author, rating, restaurant);
         restaurant.reviewsList.insert(review);
+        updateAverageRating(restaurant);
     }
 
-    public void updateAverageRating(Restaurant restaurant) {
+    public static void updateAverageRating(Restaurant restaurant) {
         LinkedList reviewsList = restaurant.reviewsList;
         int numReviews = reviewsList.countNodes();
         int totalStars = 0;
@@ -37,6 +31,25 @@ public class Restaurant {
             thisReview = thisReview.getNext();
         }
         restaurant.averageRating = Math.round(totalStars / numReviews);
+    }
+
+    public static String getAllReviews(Restaurant restaurant) {
+        String allReviews = "";
+        if(restaurant.reviewsList != null) {
+            allReviews = "/n";
+            Node thisReview = restaurant.reviewsList.head;
+            while (thisReview != null) {
+                allReviews += Review.toReviewString(thisReview.getValue()) + "/n";
+                thisReview = thisReview.getNext();
+            }
+        }
+        return allReviews;
+    }
+
+    public static String toRestString(Restaurant restaurant) {
+        String allReviews = getAllReviews(restaurant);
+        String restaurantDescription = restaurant.name + ": " + restaurant.averageRating + " stars, " + restaurant.priceCategory + allReviews;
+        return restaurantDescription;
     }
 
 }
