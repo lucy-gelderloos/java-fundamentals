@@ -24,15 +24,15 @@ public class LinkedList
     return nodeCount;
   }
 
-  @Override
-  public String toString() {
-    String contents = "Reviews/n";
-    // same loop as above, except add the value to the string instead of checking against an argument
-    Node thisNode = this.head;
-    while (thisNode != null) {
-      contents += thisNode.getValue() + "/n";
-      thisNode = thisNode.getNext();
-    }
-      return contents + "***";
-    }
+//  @Override
+//  public String toString() {
+//    String contents = "Reviews/n";
+//    // same loop as above, except add the value to the string instead of checking against an argument
+//    Node thisNode = this.head;
+//    while (thisNode != null) {
+//      contents += thisNode.getValue() + "/n";
+//      thisNode = thisNode.getNext();
+//    }
+//      return contents + "***";
+//    }
 }

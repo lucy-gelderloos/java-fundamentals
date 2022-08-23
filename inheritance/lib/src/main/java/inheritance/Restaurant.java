@@ -4,19 +4,16 @@ public class Restaurant {
     String name = "";
     int averageRating = 0;
     String priceCategory = "";
+    LinkedList reviewsList = new LinkedList();
 
-    LinkedList reviewsList;
-//    LinkedList reviewsList = new LinkedList();
-
-    public Restaurant(String name, int averageRating, String priceCategory, LinkedList reviewsList) {
+    public Restaurant(String name, int averageRating, String priceCategory) {
         this.name = name;
         this.averageRating = averageRating;
         this.priceCategory = priceCategory;
-        this.reviewsList = reviewsList;
     }
 
     public static void addReview(String body, String author, int rating, Restaurant restaurant) {
-        Review review = new Review(body, author, rating, restaurant);
+        Review review = new Review(body, author, rating);
         restaurant.reviewsList.insert(review);
         updateAverageRating(restaurant);
     }
@@ -35,7 +32,7 @@ public class Restaurant {
 
     public static String getAllReviews(Restaurant restaurant) {
         String allReviews = "";
-        if(restaurant.reviewsList != null) {
+        if(restaurant.reviewsList.head != null) {
             allReviews = "/n";
             Node thisReview = restaurant.reviewsList.head;
             while (thisReview != null) {

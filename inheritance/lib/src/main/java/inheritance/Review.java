@@ -4,9 +4,9 @@ public class Review {
     String body;
     String author;
     int rating;
-    Restaurant restaurant;
-    public Review(String body, String author, int rating, Restaurant restaurant) {
-        this.restaurant = restaurant;
+//    Restaurant restaurant;
+    public Review(String body, String author, int rating) {
+//        this.restaurant = restaurant;
         this.body = body;
         this.author = author;
         this.rating = rating;
