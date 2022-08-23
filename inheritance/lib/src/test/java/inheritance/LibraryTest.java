@@ -7,22 +7,22 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
-    Restaurant testaurant = new Restaurant("The Java Diner","$");
+    Business testaurant = new Business("The Java Diner","$");
 
     @Test void testRestaurantConstructor() {
         assertEquals("The Java Diner",testaurant.getName());
     }
 
     @Test void testToRestStringNoReviews() {
-        assertEquals("The Java Diner: 0 stars, $",Restaurant.toRestString(testaurant));
+        assertEquals("The Java Diner: 0 stars, $",Business.toBusinessString(testaurant));
     }
 
     @Test void testToRestStringWithReviews() {
-        Restaurant.addReview("Java is great!","A. Developer",5,testaurant);
-        Restaurant.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
-        Restaurant.addReview("I hated this diner","PythonFan123",0,testaurant);
+        Business.addReview("Java is great!","A. Developer",5,testaurant);
+        Business.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
+        Business.addReview("I hated this diner","PythonFan123",0,testaurant);
 
-        assertEquals("The Java Diner: 3 stars, $\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer\n",Restaurant.toRestString(testaurant));
+        assertEquals("The Java Diner: 3 stars, $\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer\n",Business.toBusinessString(testaurant));
         assertEquals(3,testaurant.getAverageRating());
     }
 
@@ -43,7 +43,7 @@ class LibraryTest {
     }
 
     @Test void testAddReview() {
-        Restaurant.addReview("Java is great!","A. Developer",5,testaurant);
+        Business.addReview("Java is great!","A. Developer",5,testaurant);
 
         assertNotNull(testaurant.getReviewsList());
     }

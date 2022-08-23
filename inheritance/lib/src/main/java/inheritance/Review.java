@@ -4,22 +4,14 @@ public class Review {
     private String body;
     private String author;
     private int rating;
-    private Restaurant restaurant;
+    private Business business;
 
-    public Review(String body, String author, int rating, Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public Review(String body, String author, int rating, Business business) {
+        this.business = business;
         this.body = body;
         this.author = author;
         this.rating = rating;
     }
-
-//    public Review(String body, String author, int rating, Theater theater, String movie) {
-//        this.theater = theater;
-//        this.body = body;
-//        this.author = author;
-//        this.rating = rating;
-//        this.movie = movie;
-//    }
 
     // TODO: find a way to associate the restaurant with the review without including the whole restaurant object - hashCode? add ID? If add ID, how to track what's next ID? Just randomize & hope it's fine?
     // TODO: limit rating to between 0 and 5
@@ -56,12 +48,12 @@ public class Review {
         this.rating = rating;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public Business getBusiness() {
+        return business;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setBusiness(Business business) {
+        this.business = business;
     }
 
 }
