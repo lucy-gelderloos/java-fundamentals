@@ -6,6 +6,22 @@ public class Review {
     private int rating;
     private Restaurant restaurant;
 
+    public Review(String body, String author, int rating) {
+        this.restaurant = restaurant;
+        this.body = body;
+        this.author = author;
+        this.rating = rating;
+    }
+
+    // TODO: limit rating to between 0 and 5
+    // TODO: add User property
+    // TODO: limit user to one review per restaurant
+
+    public static String toReviewString(Review review) {
+        String fullReview = review.body + " | " + review.rating + " stars. -" + review.author;
+        return fullReview;
+    }
+
     public String getBody() {
         return body;
     }
@@ -38,15 +54,4 @@ public class Review {
         this.restaurant = restaurant;
     }
 
-    public Review(String body, String author, int rating) {
-        this.restaurant = restaurant;
-        this.body = body;
-        this.author = author;
-        this.rating = rating;
-    }
-
-    public static String toReviewString(Review review) {
-        String fullReview = review.body + " | " + review.rating + " stars. -" + review.author;
-        return fullReview;
-    }
 }

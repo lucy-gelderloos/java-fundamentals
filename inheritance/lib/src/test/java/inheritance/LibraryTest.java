@@ -7,12 +7,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
-    @Test void someLibraryMethodReturnsTrue() {
-        Library classUnderTest = new Library();
-        assertTrue(classUnderTest.someLibraryMethod(), "someLibraryMethod should return 'true'");
-    }
-
-    Restaurant testaurant = new Restaurant("The Java Diner",0,"$");
+    Restaurant testaurant = new Restaurant("The Java Diner","$");
 
     @Test void testRestaurantConstructor() {
         assertEquals("The Java Diner",testaurant.getName());
