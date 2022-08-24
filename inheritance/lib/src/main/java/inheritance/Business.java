@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Business {
 
     private String name;
-    private int averageRating;
     private String priceCategory;
     // TODO: limit priceCategory to "$", "$$", "$$$", or "$$$$"
     private ArrayList<Review> reviewsList = new ArrayList();
@@ -32,12 +31,16 @@ public class Business {
         updateAverageRating(theater);
     }
 
-    public static void updateAverageRating(Business business) {
+    public static int updateAverageRating(Business business) {
         int totalStars = 0;
+        int averageRating;
         for (Review review : business.reviewsList) {
             totalStars += review.getRating();
         }
-        business.averageRating = Math.round(totalStars / business.reviewsList.size());
+        if(business.reviewsList.size() == 0) {
+            averageRating = 0;
+        } else { averageRating = Math.round(totalStars / business.reviewsList.size()); }
+        return averageRating;
     }
 
     public static String getAllReviews(Business business) {
@@ -55,27 +58,23 @@ public class Business {
     }
 
     public static String toBusinessString(Business business) {
-        String allReviews = getAllReviews(business);
-        String businessDescription = business.name + ": " + business.averageRating + " stars, " + business.priceCategory + allReviews;
+        String businessDescription = business.name + ": " + updateAverageRating(business) + " stars, " + business.priceCategory + getAllReviews(business);
         return businessDescription;
     }
 
     public static String toBusinessString(Restaurant restaurant) {
         // overload toBusinessString to include chainName
-        String allReviews = Business.getAllReviews(restaurant);
         String chainName = "";
         if(restaurant.getChainName() != "") {
             chainName = " (a location of " + restaurant.getChainName() + ")";
         }
-        String restaurantDescription = restaurant.getName() + chainName + ": " + restaurant.getAverageRating() + " stars, " + restaurant.getPriceCategory() + allReviews;
+        String restaurantDescription = restaurant.getName() + chainName + ": " + updateAverageRating(restaurant) + " stars, " + restaurant.getPriceCategory() + getAllReviews(restaurant);
         return restaurantDescription;
     }
 
     public static String toBusinessString(Theater theater) {
         // overload toBusinessString to include list of movies
-        String allReviews = Business.getAllReviews(theater);
-        String allMovies = Theater.getAllMovies(theater);
-        String theaterDescription = theater.getName() + ": " + theater.getAverageRating() + " stars, " + theater.getPriceCategory() + allMovies + allReviews;
+        String theaterDescription = theater.getName() + ": " + updateAverageRating(theater) + " stars, " + theater.getPriceCategory() + Theater.getAllMovies(theater) + getAllReviews(theater);
         return theaterDescription;
     }
 
@@ -87,13 +86,6 @@ public class Business {
         this.name = name;
     }
 
-    public int getAverageRating() {
-        return averageRating;
-    }
-
-    public void setAverageRating(int averageRating) {
-        this.averageRating = averageRating;
-    }
 
     public String getPriceCategory() {
         return priceCategory;

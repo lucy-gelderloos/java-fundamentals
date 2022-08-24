@@ -23,6 +23,10 @@ public class Review {
         return fullReview;
     }
 
+    public static void updateStars(Review review, int newRating) {
+        review.setRating(newRating);
+    }
+
     public String getBody() {
         return body;
     }

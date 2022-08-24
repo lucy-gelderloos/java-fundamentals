@@ -12,13 +12,12 @@
   - String `name`  
   - String `priceCategory`
   - String `businessType`
-  - int `averageRating`
   - ArrayList<String> `reviewsList`
 - Constructor
   - *Business(String name, String priceCategory, String businessType)*
 - Methods
   - *addReview(String body, String author, int rating, Business business)* adds a review to the business' list of reviews, then calls *updateAverageRating*.
-  - *addReview(String body, String author, int rating, Business business, String movie)* adds a review including the movie viewed to the business' list of reviews, then calls *updateAverageRating*.
+  - *addReview(String body, String author, int rating, Theater theater, String movie)* adds a review including the movie viewed to the theater's list of reviews, then calls *updateAverageRating*.
   - *updateAverageRating(Business business)* iterates through the business' list of reviews, sums each rating, and divides by the total number of reviews to get the average rating.
   - *getAllReviews(Business business)* first determines if the review list has any entries; if no, it returns an empty string. If yes, it starts with an output string with "Review:" on a single line. It then iterates through the restaurant's list of reviews, calls *Review.toReviewString* on each, and adds each resulting string. Each review string except the last is followed by a newline.
   - *toBusinessString(Business business)* concatenates the business' name, rating, and price category, followed by the string returned from *getAllReviews*.
@@ -81,6 +80,7 @@
   - *Review(Business business, String body, String author, int rating)*
 - Methods
   - *toReviewString(Review review)* concatenates the review body, rating, and author
+  - *updateStars(Review review, int newRating)* updates the star rating of the provided review with the provided value
 
 ## Testing
 
