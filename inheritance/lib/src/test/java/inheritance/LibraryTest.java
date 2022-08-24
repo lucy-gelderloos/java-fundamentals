@@ -10,24 +10,42 @@ import static org.junit.jupiter.api.Assertions.*;
 class LibraryTest {
 
 
-    @Test void testRestaurantConstructor() {
+    @Test void testConstructors() {
         Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
-        assertEquals("The Java Diner",testaurant.getName());
-        assertEquals("restaurant",testaurant.getBusinessType());
+        Shop testShop = new Shop("Markdown Market","$","shop");
+        Theater testTheater = new Theater("Constructor Cinemas","$$", "theater");
+
+        assertEquals("The Java Diner",testaurant.getName(), "the test restaurant's name should be \"The Java Diner\"");
+        assertEquals("shop",testShop.getBusinessType(), "the test shop's businessType should be \"shop\"");
+        assertEquals("$$",testTheater.getPriceCategory(), "the test theater's priceCategory should be \"$$\"");
     }
 
-    @Test void testToRestStringNoReviews() {
-        Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
-        assertEquals("The Java Diner: 0 stars, $",Restaurant.toRestaurantString(testaurant));
-    }
-
-    @Test void testToRestStringWithReviews() {
+    @Test void testToString() {
         Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
         Business.addReview("I hated this diner","PythonFan123",0,testaurant);
         Business.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
         Business.addReview("Java is great!","A. Developer",5,testaurant);
 
-        assertEquals("The Java Diner: 3 stars, $\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer",Restaurant.toRestaurantString(testaurant));
+        Shop testShop = new Shop("Markdown Market","$","shop");
+
+        Theater testTheater = new Theater("Constructor Cinemas","$$", "theater");
+        Business.addReview("A super theater!","NoMoreArrays",5,testTheater);
+        Business.addReview("This theater is fine.","A. Developer",3,testTheater);
+        Theater.addMovie(testTheater,"A Movie");
+        Theater.addMovie(testTheater,"Another Movie");
+
+        assertEquals("The Java Diner: 3 stars, $\nReviews:\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer",Business.toBusinessString(testaurant));
+        assertEquals("Markdown Market: 0 stars, $",Business.toBusinessString(testShop));
+        assertEquals("Constructor Cinemas: 4 stars, $$\nNow Playing: A Movie, Another Movie\nReviews:\nA super theater! | 5 stars. -NoMoreArrays\nThis theater is fine. | 3 stars. -A. Developer",Business.toBusinessString(testTheater));
+    }
+
+    @Test void testToStringWithReviews() {
+        Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
+        Business.addReview("I hated this diner","PythonFan123",0,testaurant);
+        Business.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
+        Business.addReview("Java is great!","A. Developer",5,testaurant);
+
+        assertEquals("The Java Diner: 3 stars, $\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer",Business.toBusinessString(testaurant));
         assertEquals(3,testaurant.getAverageRating());
     }
 

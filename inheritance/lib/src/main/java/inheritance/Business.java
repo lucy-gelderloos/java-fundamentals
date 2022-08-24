@@ -23,12 +23,6 @@ public class Business {
         business.reviewsList.add(review);
         updateAverageRating(business);
     }
-//
-//    public static void addReview(String body, String author, int rating, Restaurant restaurant) {
-//        Review review = new Review(body, author, rating, restaurant);
-//        restaurant.getReviewsList().add(review);
-//        updateAverageRating(restaurant);
-//    }
 
     public static void updateAverageRating(Business business) {
         int totalStars = 0;
@@ -41,7 +35,7 @@ public class Business {
     public static String getAllReviews(Business business) {
         String allReviews = "";
         if(business.reviewsList.size() > 0) {
-            allReviews = "\n";
+            allReviews = "\nReviews:\n";
             for (int i = 0; i < business.reviewsList.size(); i++ ) {
                 allReviews += Review.toReviewString(business.reviewsList.get(i));
                 if(i < (business.reviewsList.size() - 1)) {
@@ -56,6 +50,25 @@ public class Business {
         String allReviews = getAllReviews(business);
         String businessDescription = business.name + ": " + business.averageRating + " stars, " + business.priceCategory + allReviews;
         return businessDescription;
+    }
+
+    public static String toBusinessString(Restaurant restaurant) {
+        // overload toBusinessString to include chainName
+        String allReviews = Business.getAllReviews(restaurant);
+        String chainName = "";
+        if(restaurant.getChainName() != "") {
+            chainName = " (a location of " + restaurant.getChainName() + ")";
+        }
+        String restaurantDescription = restaurant.getName() + chainName + ": " + restaurant.getAverageRating() + " stars, " + restaurant.getPriceCategory() + allReviews;
+        return restaurantDescription;
+    }
+
+    public static String toBusinessString(Theater theater) {
+        // overload toBusinessString to include list of movies
+        String allReviews = Business.getAllReviews(theater);
+        String allMovies = Theater.getAllMovies(theater);
+        String theaterDescription = theater.getName() + ": " + theater.getAverageRating() + " stars, " + theater.getPriceCategory() + allMovies + allReviews;
+        return theaterDescription;
     }
 
     public String getName() {

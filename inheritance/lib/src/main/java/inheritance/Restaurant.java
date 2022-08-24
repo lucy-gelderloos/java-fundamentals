@@ -12,16 +12,6 @@ public class Restaurant extends Business {
         this.chainName = chainName;
     }
 
-    public static String toRestaurantString(Restaurant restaurant) {
-        String allReviews = Business.getAllReviews(restaurant);
-        String chainName = "";
-        if(restaurant.getChainName() != "") {
-            chainName = " (a location of " + restaurant.getChainName() + ")";
-        }
-        String restaurantDescription = restaurant.getName() + chainName + ": " + restaurant.getAverageRating() + " stars, " + restaurant.getPriceCategory() + allReviews;
-        return restaurantDescription;
-    }
-
     public String getChainName() {
         return chainName;
     }

@@ -4,18 +4,33 @@ import java.util.ArrayList;
 
 public class Theater extends Business {
 
-    private ArrayList<String> currentMovies;
+    private ArrayList<String> currentMovies = new ArrayList<String>();
 
-    public Theater(String name, String priceCategory, String businessType, ArrayList<String> currentMovies) {
+    public Theater(String name, String priceCategory, String businessType) {
         super(name, priceCategory, businessType);
         this.currentMovies = currentMovies;
     }
 
-    public void addMovie(Theater theater, String movieTitle) {
+    public static String getAllMovies(Theater theater) {
+        String allMovies = "";
+
+        if(theater.getCurrentMovies().size() > 0) {
+            allMovies = "\nNow Playing: ";
+            for (int i = 0; i < theater.getCurrentMovies().size(); i++) {
+                allMovies += theater.getCurrentMovies().get(i);
+                if (i < (theater.getCurrentMovies().size() - 1)) {
+                    allMovies += ", ";
+                }
+            }
+        }
+        return allMovies;
+    }
+
+    public static void addMovie(Theater theater, String movieTitle) {
         theater.getCurrentMovies().add(movieTitle);
     }
 
-    public void removeMovie(Theater theater, String movieTitle) {
+    public static void removeMovie(Theater theater, String movieTitle) {
         ArrayList<String> currentMovies = theater.getCurrentMovies();
         for (int i = 0; i < currentMovies.size(); i++ ) {
             if(currentMovies.get(i).equals(movieTitle)) {
@@ -23,6 +38,7 @@ public class Theater extends Business {
                 break;
             }
         }
+        // TODO: handle if moviesList is empty or movie is not in list
     }
 
     public ArrayList<String> getCurrentMovies() {
