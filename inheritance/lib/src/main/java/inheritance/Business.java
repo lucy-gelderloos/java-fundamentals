@@ -8,7 +8,6 @@ public class Business {
     private String priceCategory;
     // TODO: limit priceCategory to "$", "$$", "$$$", or "$$$$"
     private ArrayList<Review> reviewsList = new ArrayList();
-
     private String businessType;
 
     public Business(String name, String priceCategory, String businessType) {
@@ -17,18 +16,23 @@ public class Business {
         this.businessType = businessType;
     }
 
-    public static void addReview(String body, String author, int rating, Business business) {
-        Review review = new Review(body, author, rating, business);
-        business.reviewsList.add(review);
-        updateAverageRating(business);
+    public static void addReview(String body, User author, int rating, Business business) {
+        ArrayList<Review> businessReviews = business.getReviewsList();
+        for (Review review : businessReviews) {
+            if(review.getAuthor().equals(author)) {
+                System.out.println("This user has already reviewed this business");
+                return;
+            }
+        }
+        Review newReview = new Review(body, author, rating, business);
+        business.reviewsList.add(newReview);
     }
 
-    public static void addReview(String body, String author, int rating, Theater theater, String movie) {
+    public static void addReview(String body, User author, int rating, Theater theater, String movie) {
         body += " I saw " + movie + ".";
         Review review = new Review(body, author, rating, theater);
         Theater.addMovie(theater, movie);
         theater.getReviewsList().add(review);
-        updateAverageRating(theater);
     }
 
     public static int updateAverageRating(Business business) {

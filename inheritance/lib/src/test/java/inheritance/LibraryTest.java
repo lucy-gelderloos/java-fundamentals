@@ -22,14 +22,18 @@ class LibraryTest {
     }
 
     @Test void testToBusinessString() {
+        User aDeveloper = new User("A. Developer");
+        User noMoreArrays = new User("NoMoreArrays");
+        User pythonFan123 = new User("PythonFan123");
+
         // tests the Business.toBusinessString under various conditions
 
         // does it work correctly with businesses with reviews?
         // does it work correctly with the restaurant chainName?
         Restaurant testaurant = new Restaurant("The Java Diner","$","Dev Diners", "restaurant");
-        Business.addReview("I hated this diner","PythonFan123",0,testaurant);
-        Business.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
-        Business.addReview("Java is great!","A. Developer",5,testaurant);
+        Business.addReview("I hated this diner",pythonFan123,0,testaurant);
+        Business.addReview("Try the linked lists!",noMoreArrays,4,testaurant);
+        Business.addReview("Java is great!",aDeveloper,5,testaurant);
 
         // does it work correctly with a business with no reviews?
         Shop testShop = new Shop("Markdown Market","$","shop");
@@ -37,8 +41,8 @@ class LibraryTest {
         // does it handle theaters and movies correctly?
         Theater testTheater = new Theater("Constructor Cinemas","$$", "theater");
         Theater.addMovie(testTheater,"Movie");
-        Business.addReview("A super theater!","NoMoreArrays",5,testTheater);
-        Business.addReview("This theater is fine.","A. Developer",3,testTheater,"2 Fast 2 Movie");
+        Business.addReview("A super theater!",noMoreArrays,5,testTheater);
+        Business.addReview("This theater is fine.",aDeveloper,3,testTheater,"2 Fast 2 Movie");
 
         assertEquals("The Java Diner (a location of Dev Diners): 3 stars, $\nReviews:\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer",Business.toBusinessString(testaurant));
         assertEquals("Markdown Market: 0 stars, $",Business.toBusinessString(testShop));
@@ -46,42 +50,55 @@ class LibraryTest {
     }
 
     @Test void testReviewConstructor() {
+        User noMoreArrays = new User("NoMoreArrays");
+
         // tests the Review constructor
         Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
-        Review testReview1 = new Review("Java is great!","A. Developer",5,testaurant);
-        Review testReview2 = new Review("Try the linked lists!","NoMoreArrays",4,testaurant);
-        Review testReview3 = new Review("I hated this diner","PythonFan123",0,testaurant);
+        Review testReview1 = new Review("Java is great!",noMoreArrays,5,testaurant);
+        Review testReview2 = new Review("Try the linked lists!",noMoreArrays,4,testaurant);
+        Review testReview3 = new Review("I hated this diner",noMoreArrays,0,testaurant);
 
         assertEquals("Java is great!", testReview1.getBody());
-        assertEquals("NoMoreArrays", testReview2.getAuthor());
+        assertEquals("NoMoreArrays", testReview2.getAuthor().getUsername());
         assertEquals(0, testReview3.getRating());
     }
 
-    @Test void testReviewString() {
+    @Test void testToReviewString() {
         // tests converting reviews to a string
+        User aDeveloper = new User("A. Developer");
         Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
-        Review testReview1 = new Review("Java is great!","A. Developer",5,testaurant);
+        Review testReview1 = new Review("Java is great!",aDeveloper,5,testaurant);
 
         assertEquals(Review.toReviewString(testReview1),"Java is great! | 5 stars. -A. Developer");
     }
 
     @Test void testAddReview() {
-        // tests adding reviews to businesses
+        // tests adding reviews to businesses; confirms a user can't review a business multiple times
+        User aDeveloper = new User("A. Developer");
+        User noMoreArrays = new User("NoMoreArrays");
+        User pythonFan123 = new User("PythonFan123");
+
         Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
 
-        Business.addReview("Java is great!","A. Developer",5,testaurant);
+        Business.addReview("Java is great!",aDeveloper,5,testaurant);
+        Business.addReview("Love the curly brace fries.",aDeveloper,4,testaurant);
+        Business.addReview("Try the linked lists!",noMoreArrays,4,testaurant);
+        Business.addReview("I hated this diner",pythonFan123,0,testaurant);
 
-        assertEquals(1,testaurant.getReviewsList().size());
+        assertEquals("The Java Diner: 3 stars, $\nReviews:\nJava is great! | 5 stars. -A. Developer\nTry the linked lists! | 4 stars. -NoMoreArrays\nI hated this diner | 0 stars. -PythonFan123",Business.toBusinessString(testaurant));
+        assertEquals(3,Business.updateAverageRating(testaurant));
     }
 
     @Test void testAddRemoveMovies() {
+        User aDeveloper = new User("A. Developer");
+        User noMoreArrays = new User("NoMoreArrays");
         // tests adding to and removing from a theater's movieList
         Theater testTheater = new Theater("Constructor Cinemas","$$", "theater");
 
         // when a review is added that includes a movie that is not in the theater's list already, is the movie added to the list?
-        Business.addReview("This theater is fine.","A. Developer",3,testTheater,"Movie");
+        Business.addReview("This theater is fine.",aDeveloper,3,testTheater,"Movie");
         // when a review is added that includes a movie that's already in the list, does the method skip adding it to the list?
-        Business.addReview("A super theater!","NoMoreArrays",5,testTheater,"Movie");
+        Business.addReview("A super theater!",noMoreArrays,5,testTheater,"Movie");
         // does addMovie add a movie?
         Theater.addMovie(testTheater,"2 Fast 2 Movie");
         // does removeMovie remove a movie?
@@ -92,8 +109,9 @@ class LibraryTest {
     }
 
     @Test void testUpdateStars() {
+        User aDeveloper = new User("A. Developer");
         Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
-        Review testReview1 = new Review("Java is great!","A. Developer",5,testaurant);
+        Review testReview1 = new Review("Java is great!",aDeveloper,5,testaurant);
 
         Review.updateStars(testReview1,4);
 
