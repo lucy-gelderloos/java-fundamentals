@@ -18,7 +18,8 @@
   - *Business(String name, String priceCategory, String businessType)*
 - Methods
   - *addReview(String body, String author, int rating, Business business)* adds a review to the business' list of reviews, then calls *updateAverageRating*.
-  - *updateAverageRating(Business business)* iterates through the restaurant's list of reviews, sums their ratings, and divides by the total number of reviews to get the average rating.
+  - *addReview(String body, String author, int rating, Business business, String movie)* adds a review including the movie viewed to the business' list of reviews, then calls *updateAverageRating*.
+  - *updateAverageRating(Business business)* iterates through the business' list of reviews, sums each rating, and divides by the total number of reviews to get the average rating.
   - *getAllReviews(Business business)* first determines if the review list has any entries; if no, it returns an empty string. If yes, it starts with an output string with "Review:" on a single line. It then iterates through the restaurant's list of reviews, calls *Review.toReviewString* on each, and adds each resulting string. Each review string except the last is followed by a newline.
   - *toBusinessString(Business business)* concatenates the business' name, rating, and price category, followed by the string returned from *getAllReviews*.
   - *toBusinessString(Restaurant restaurant)* concatenates the restaurant's name, chain name (if present), rating, and price category, followed by the string returned from *getAllReviews*.
@@ -39,7 +40,7 @@
 - **Notes:**
   - `priceCategory` options are "$", "$$", "$$$", "$$$$"
   - `businessType` options are "restaurant", "shop", "theater"
-  - If restaurant is not part of a chain, chainName should be ""
+  - If restaurant is not part of a chain, chainName is ""
 
 ### Shop.java
 
@@ -62,8 +63,8 @@
   - *Theater(String name, String priceCategory, String businessType)*
 - Methods:
   - Inherits *addReview*, *updateAverageRating*, *getAllReviews*, *toBusinessString* from Business
-  - *addMovie(String movie)* adds the provided movie to the theater's list of movies
-  - *removeMovie(String movie)* removes the provided movie from the theater's list of movies
+  - *addMovie(Theater theater, String movie)* checks if the provided movie is in the provided theater's list of movies, and if it's not there, adds it to the list
+  - *removeMovie(Theater theater, String movie)* removes the provided movie from the theater's list of movies
   - *getAllMovies(Theater theater)* iterates through the theater's list of movies and outputs them in a string beginning with "Now Playing: ". If the list of movies is empty, returns an empty string. 
 - **Notes:**
   - `priceCategory` options are "$", "$$", "$$$", "$$$$"
@@ -77,9 +78,9 @@
   - int `rating`
   - Business `business`
 - Constructor
-  - *Review* creates a new review with the provided body, author, rating, and business
+  - *Review(Business business, String body, String author, int rating)*
 - Methods
-  - *toReviewString* concatenates the review body, rating, and author
+  - *toReviewString(Review review)* concatenates the review body, rating, and author
 
 ## Testing
 

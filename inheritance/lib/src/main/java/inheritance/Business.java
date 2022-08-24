@@ -24,6 +24,14 @@ public class Business {
         updateAverageRating(business);
     }
 
+    public static void addReview(String body, String author, int rating, Theater theater, String movie) {
+        body += " I saw " + movie + ".";
+        Review review = new Review(body, author, rating, theater);
+        Theater.addMovie(theater, movie);
+        theater.getReviewsList().add(review);
+        updateAverageRating(theater);
+    }
+
     public static void updateAverageRating(Business business) {
         int totalStars = 0;
         for (Review review : business.reviewsList) {

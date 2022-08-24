@@ -30,13 +30,12 @@ class LibraryTest {
 
         Theater testTheater = new Theater("Constructor Cinemas","$$", "theater");
         Business.addReview("A super theater!","NoMoreArrays",5,testTheater);
-        Business.addReview("This theater is fine.","A. Developer",3,testTheater);
-        Theater.addMovie(testTheater,"A Movie");
+        Business.addReview("This theater is fine.","A. Developer",3,testTheater,"A Movie");
         Theater.addMovie(testTheater,"Another Movie");
 
         assertEquals("The Java Diner: 3 stars, $\nReviews:\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer",Business.toBusinessString(testaurant));
         assertEquals("Markdown Market: 0 stars, $",Business.toBusinessString(testShop));
-        assertEquals("Constructor Cinemas: 4 stars, $$\nNow Playing: A Movie, Another Movie\nReviews:\nA super theater! | 5 stars. -NoMoreArrays\nThis theater is fine. | 3 stars. -A. Developer",Business.toBusinessString(testTheater));
+        assertEquals("Constructor Cinemas: 4 stars, $$\nNow Playing: A Movie, Another Movie\nReviews:\nA super theater! | 5 stars. -NoMoreArrays\nThis theater is fine. I saw A Movie. | 3 stars. -A. Developer",Business.toBusinessString(testTheater));
     }
 
     @Test void testToStringWithReviews() {

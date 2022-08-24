@@ -27,7 +27,11 @@ public class Theater extends Business {
     }
 
     public static void addMovie(Theater theater, String movieTitle) {
-        theater.getCurrentMovies().add(movieTitle);
+        ArrayList<String> currentMovies = theater.getCurrentMovies();
+        if(!currentMovies.contains(movieTitle)){
+            currentMovies.add(movieTitle);
+        }
+        theater.setCurrentMovies(currentMovies);
     }
 
     public static void removeMovie(Theater theater, String movieTitle) {
