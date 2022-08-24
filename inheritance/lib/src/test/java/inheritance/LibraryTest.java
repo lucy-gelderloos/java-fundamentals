@@ -9,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
 
-
     @Test void testConstructors() {
         // tests the constructors for each type of business
         Restaurant testaurant = new Restaurant("The Java Diner","$","Dev Diners", "restaurant");
@@ -72,7 +71,7 @@ class LibraryTest {
 
         Business.addReview("Java is great!","A. Developer",5,testaurant);
 
-        assertNotNull(testaurant.getReviewsList());
+        assertEquals(1,testaurant.getReviewsList().size());
     }
 
     @Test void testAddRemoveMovies() {
