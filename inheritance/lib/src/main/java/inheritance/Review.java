@@ -2,12 +2,12 @@ package inheritance;
 
 public class Review {
     private String body;
-    private String author;
+    private User author;
     private int rating;
-    private Restaurant restaurant;
+    private Business business;
 
-    public Review(String body, String author, int rating) {
-        this.restaurant = restaurant;
+    public Review(String body, User author, int rating, Business business) {
+        this.business = business;
         this.body = body;
         this.author = author;
         this.rating = rating;
@@ -15,11 +15,15 @@ public class Review {
 
     // TODO: limit rating to between 0 and 5
     // TODO: add User property
-    // TODO: limit user to one review per restaurant
+    // TODO: limit user to one review per business
 
     public static String toReviewString(Review review) {
-        String fullReview = review.body + " | " + review.rating + " stars. -" + review.author;
+        String fullReview = review.body + " | " + review.rating + " stars. -" + review.getAuthor().getUsername();
         return fullReview;
+    }
+
+    public static void updateStars(Review review, int newRating) {
+        review.setRating(newRating);
     }
 
     public String getBody() {
@@ -30,11 +34,11 @@ public class Review {
         this.body = body;
     }
 
-    public String getAuthor() {
+    public User getAuthor() {
         return author;
     }
 
-    public void setAuthor(String author) {
+    public void setAuthor(User author) {
         this.author = author;
     }
 
@@ -46,12 +50,12 @@ public class Review {
         this.rating = rating;
     }
 
-    public Restaurant getRestaurant() {
-        return restaurant;
+    public Business getBusiness() {
+        return business;
     }
 
-    public void setRestaurant(Restaurant restaurant) {
-        this.restaurant = restaurant;
+    public void setBusiness(Business business) {
+        this.business = business;
     }
 
 }
