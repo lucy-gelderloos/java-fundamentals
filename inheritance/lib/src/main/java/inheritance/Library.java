@@ -9,7 +9,7 @@ public class Library {
     }
 
     public static void main(String[] args) {
-        Business testaurant = new Business("The Java Diner","$");
+        Business testaurant = new Business("The Java Diner","$", "restaurant");
         Business.addReview("I hated this diner","PythonFan123",0,testaurant);
         Business.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
         Business.addReview("Java is great!","A. Developer",5,testaurant);

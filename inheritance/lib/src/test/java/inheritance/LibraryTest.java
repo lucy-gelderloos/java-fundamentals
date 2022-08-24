@@ -4,29 +4,35 @@
 package inheritance;
 
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class LibraryTest {
-    Business testaurant = new Business("The Java Diner","$");
+
 
     @Test void testRestaurantConstructor() {
+        Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
         assertEquals("The Java Diner",testaurant.getName());
+        assertEquals("restaurant",testaurant.getBusinessType());
     }
 
     @Test void testToRestStringNoReviews() {
-        assertEquals("The Java Diner: 0 stars, $",Business.toBusinessString(testaurant));
+        Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
+        assertEquals("The Java Diner: 0 stars, $",Restaurant.toRestaurantString(testaurant));
     }
 
     @Test void testToRestStringWithReviews() {
-        Business.addReview("Java is great!","A. Developer",5,testaurant);
-        Business.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
+        Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
         Business.addReview("I hated this diner","PythonFan123",0,testaurant);
+        Business.addReview("Try the linked lists!","NoMoreArrays",4,testaurant);
+        Business.addReview("Java is great!","A. Developer",5,testaurant);
 
-        assertEquals("The Java Diner: 3 stars, $\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer\n",Business.toBusinessString(testaurant));
+        assertEquals("The Java Diner: 3 stars, $\nI hated this diner | 0 stars. -PythonFan123\nTry the linked lists! | 4 stars. -NoMoreArrays\nJava is great! | 5 stars. -A. Developer",Restaurant.toRestaurantString(testaurant));
         assertEquals(3,testaurant.getAverageRating());
     }
 
     @Test void testReviewConstructor() {
+        Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
         Review testReview1 = new Review("Java is great!","A. Developer",5,testaurant);
         Review testReview2 = new Review("Try the linked lists!","NoMoreArrays",4,testaurant);
         Review testReview3 = new Review("I hated this diner","PythonFan123",0,testaurant);
@@ -37,12 +43,15 @@ class LibraryTest {
     }
 
     @Test void testReviewString() {
+        Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
         Review testReview1 = new Review("Java is great!","A. Developer",5,testaurant);
 
         assertEquals(Review.toReviewString(testReview1),"Java is great! | 5 stars. -A. Developer");
     }
 
     @Test void testAddReview() {
+        Restaurant testaurant = new Restaurant("The Java Diner","$","", "restaurant");
+
         Business.addReview("Java is great!","A. Developer",5,testaurant);
 
         assertNotNull(testaurant.getReviewsList());

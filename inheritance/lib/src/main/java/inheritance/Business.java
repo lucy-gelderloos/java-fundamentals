@@ -10,9 +10,12 @@ public class Business {
     // TODO: limit priceCategory to "$", "$$", "$$$", or "$$$$"
     private ArrayList<Review> reviewsList = new ArrayList();
 
-    public Business(String name, String priceCategory) {
+    private String businessType;
+
+    public Business(String name, String priceCategory, String businessType) {
         this.name = name;
         this.priceCategory = priceCategory;
+        this.businessType = businessType;
     }
 
     public static void addReview(String body, String author, int rating, Business business) {
@@ -20,6 +23,12 @@ public class Business {
         business.reviewsList.add(review);
         updateAverageRating(business);
     }
+//
+//    public static void addReview(String body, String author, int rating, Restaurant restaurant) {
+//        Review review = new Review(body, author, rating, restaurant);
+//        restaurant.getReviewsList().add(review);
+//        updateAverageRating(restaurant);
+//    }
 
     public static void updateAverageRating(Business business) {
         int totalStars = 0;
@@ -35,7 +44,7 @@ public class Business {
             allReviews = "\n";
             for (int i = 0; i < business.reviewsList.size(); i++ ) {
                 allReviews += Review.toReviewString(business.reviewsList.get(i));
-                while(i < (business.reviewsList.size() - 1)) {
+                if(i < (business.reviewsList.size() - 1)) {
                     allReviews += "\n";
                 }
             }
@@ -45,8 +54,8 @@ public class Business {
 
     public static String toBusinessString(Business business) {
         String allReviews = getAllReviews(business);
-        String restaurantDescription = business.name + ": " + business.averageRating + " stars, " + business.priceCategory + allReviews;
-        return restaurantDescription;
+        String businessDescription = business.name + ": " + business.averageRating + " stars, " + business.priceCategory + allReviews;
+        return businessDescription;
     }
 
     public String getName() {
@@ -77,8 +86,15 @@ public class Business {
         return reviewsList;
     }
 
-    public void ArrayList(ArrayList reviewsList) {
+    public void setReviewsList(ArrayList reviewsList) {
         this.reviewsList = reviewsList;
     }
 
+    public String getBusinessType() {
+        return businessType;
+    }
+
+    public void setBusinessType(String businessType) {
+        this.businessType = businessType;
+    }
 }
