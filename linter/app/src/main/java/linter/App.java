@@ -35,9 +35,7 @@ public class App {
     public static String lintSemicolons(String fileName) throws IOException {
 
             String returnString = fileName;
-            String filePathString = "C:/Users/lucyg/IdeaProjects/java-fundamentals/linter/app/src/main/resources/" + fileName + ".js";  // relative path works when running this file, but doesn't work in testing
-
-//            String filePathString = "app/src/main/resources/" + fileName + ".js";
+            String filePathString = System.getProperty("user.dir") + "/src/main/resources/" + fileName + ".js";
             Path filePath = Paths.get(filePathString);
             Scanner scanner = null;
             scanner = new Scanner(filePath);

@@ -18,6 +18,7 @@ public class Business {
 
     public static void addReview(String body, User author, int rating, Business business) {
         ArrayList<Review> businessReviews = business.getReviewsList();
+        ArrayList<Review> authorReviews = author.getReviewsList();
         for (Review review : businessReviews) {
             if(review.getAuthor().equals(author)) {
                 System.out.println("This user has already reviewed this business");
@@ -26,6 +27,10 @@ public class Business {
         }
         Review newReview = new Review(body, author, rating, business);
         business.reviewsList.add(newReview);
+        authorReviews.add(newReview);
+        author.setReviewsList(authorReviews);
+        // TODO: test whether review is successfully added to user's review list
+        // TODO: test whether review in user's list is successfully updated when Review.updateStars is called
     }
 
     public static void addReview(String body, User author, int rating, Theater theater, String movie) {
