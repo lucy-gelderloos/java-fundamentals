@@ -14,8 +14,6 @@ public class Review {
     }
 
     // TODO: limit rating to between 0 and 5
-    // TODO: add User property
-    // TODO: limit user to one review per business
 
     public static String toReviewString(Review review) {
         String fullReview = review.body + " | " + review.rating + " stars. -" + review.getAuthor().getUsername();
